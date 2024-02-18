@@ -104,14 +104,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
-
-    End Sub
-
-    Private Sub TextBox7_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
-
-    End Sub
-
     Private Sub ClearInput()
         TextBox1.Clear()
         TextBox2.Clear()
@@ -140,8 +132,9 @@ Public Class Form1
         myStreamReader.Close()
     End Sub
 
-    ' Clear Input Button
+    ' Clear Button
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ClearInput()
+        ClearPreview()
     End Sub
 End Class
