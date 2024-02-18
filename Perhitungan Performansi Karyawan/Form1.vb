@@ -43,6 +43,7 @@ Public Class Form1
         Do While Not myStreamReader.EndOfStream
             If myStreamReader.ReadLine().Contains(NIP & " - ") Then
                 MsgBox("Karyawan dengan NIP : " & NIP & " telah diinputkan !")
+                myStreamReader.Close()
                 Return
             End If
         Loop
@@ -75,11 +76,12 @@ Public Class Form1
             myStreamWriter = New StreamWriter("C:\program_performansi\data.txt", True)
             myStreamWriter.WriteLine(NIP & " - " & Fullname & " : " & Bonus.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")))
             myStreamWriter.Close()
-
-            PrintToRichTextBox()
         Else
             MsgBox(NIP & " - " & Fullname & " tidak mendapatkan bonus, silahkan perbaiki kinerja !")
         End If
+
+        PrintToRichTextBox()
+
 
         ' Call ClearInput Procedure
         ClearInput()
@@ -117,8 +119,15 @@ Public Class Form1
         TextBox4.Text = 0
     End Sub
 
+    Private Sub ClearPreview()
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
+    End Sub
+
     Private Sub ClearDatabase()
         File.WriteAllText("C:\program_performansi\data.txt", String.Empty)
+        PrintToRichTextBox()
     End Sub
 
     Private Sub PrintToRichTextBox()
